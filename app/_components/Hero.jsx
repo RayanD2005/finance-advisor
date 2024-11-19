@@ -10,16 +10,16 @@ function Hero(){
                     titleComponent={
                     <>
                         <h1 className="text-4xl font-semibold text-black dark:text-white">
-                        Unleash the power of <br />
-                        <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                            Scroll Animations
+                        Get your money up, not your funny up with <br />
+                        <span className="text-4xl md:text-[6rem] text-blue-800 font-bold mt-1 leading-none">
+                            Aura
                         </span>
                         </h1>
                     </>
                     }
                 >
                     <Image
-                    src={`/donut-chart.svg`}
+                    src={`/chart-donut.svg`} //Change to screenshot of finalised dashboard
                     alt="hero"
                     height={720}
                     width={1400}
