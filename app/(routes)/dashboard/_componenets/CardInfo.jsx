@@ -123,7 +123,6 @@ function CardInfo({budgetList, incomeList}){
                             </div>
                             <ReceiptText className='bg-blue-800 p-3 h-12 w-12 rounded-full text-white'/>    
                         </div>
-
                     </div>
 
                 </div>

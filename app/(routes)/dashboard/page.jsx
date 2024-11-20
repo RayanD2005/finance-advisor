@@ -5,6 +5,9 @@ import CardInfo from "./_componenets/CardInfo";
 import { getTableColumns } from "drizzle-orm";
 import { Budgets, Expenses, Incomes } from "@/utils/schema";
 
+import BarChartDashboard from "./_componenets/BarChartDashboard";
+
+
 
 function Dashboard(){
     const {user} = useUser();
