@@ -19,7 +19,7 @@ function DashboardLayout({ children }){
     }, [user])
 
     const  checkUserBudget = async () => {
-        const result = await db.select.from(Budgets).where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
+        const result = await db.select().from(Budgets).where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
         // If user hasnt 'created' a budgets table
         if (result?.length === 0){
             router.replace('/dashboard/budgets')

@@ -21,8 +21,8 @@ function BudgetList() {
 
     const result=await db.select({
       ...getTableColumns(Budgets),
-      totalSpend:sql `sum(${Expenses.amount})`.mapWith(Number),
-      totalItem: sql `count(${Expenses.id})`.mapWith(Number)
+      totalSpend: sql`SUM(CAST(${Expenses.amount} AS NUMERIC))`.mapWith(Number),
+      totalItem: sql`COUNT(${Expenses.id})`.mapWith(Number),
     }).from(Budgets)
     .leftJoin(Expenses,eq(Budgets.id,Expenses.budgetId))
     .where(eq(Budgets.createdBy,user?.primaryEmailAddress?.emailAddress))
