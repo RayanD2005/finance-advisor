@@ -1,3 +1,4 @@
+import { Incomes } from "@/utils/schema";
 import Link from "next/link";
 import React from "react";
 
@@ -6,6 +7,20 @@ function BudgetItem({ budget }) {
     const perc = (budget.totalSpend / budget.amount) * 100;
     return perc > 100 ? 100 : perc.toFixed(2);
   };
+
+  /**
+   * Used to Delete budget
+   */
+  const deleteIncome = async () => {
+    const deleteIncomeResult = await db
+      .delete(Incomes)
+      .where(eq(Incomes.id, id))
+      .returning();
+
+    toast("Income Deleted !");
+    route.replace("/dashboard/incomes");
+  };
+
   return (
     <Link href={"/dashboard/expenses/" + budget?.id}>
       <div

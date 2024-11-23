@@ -60,7 +60,7 @@ function Dashboard(){
         try {
             const result = await db.select({
                 ...getTableColumns(Incomes),
-                totalAmount: sql`sum(cast(${Incomes.amount} as numeric()))`.mapWith(Number),
+                totalAmount: sql`SUM(CAST(${Incomes.amount} AS NUMERIC))`.mapWith(Number),
             }).from(Incomes)
             .groupBy(Incomes.id);
     
@@ -84,7 +84,7 @@ function Dashboard(){
     //     return <div>Loading dashboard...</div>;
     // }
 
-    console.log("Expense List: ", expenseList);
+    console.log("Income List: ", incomeList);
 
     return (
         
