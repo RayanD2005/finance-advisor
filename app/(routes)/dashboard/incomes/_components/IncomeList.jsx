@@ -45,7 +45,7 @@ function IncomeList() {
             
             {incomelist?.length > 0
             ? incomelist.map((budget, index) => (
-                <IncomeItem budget={budget} onDelete={handleDeleteIncome} key={index} />
+                <IncomeItem budget={budget} onDelete={handleDeleteIncome} getIncomelist={getIncomelist} key={index} />
                 ))
             : [1, 2, 3, 4, 5].map((item, index) => (
                 <div

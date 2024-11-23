@@ -49,6 +49,7 @@ function ExpensesScreen({ params }) {
       .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
       .where(eq(Budgets.id, id))
       .groupBy(Budgets.id);
+    console.log("budget result:", result); 
 
     setbudgetInfo(result[0]);
     getExpensesList();

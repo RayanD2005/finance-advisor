@@ -54,10 +54,10 @@ function SideNav(){
     }, [path]);
 
     return (
-        <div className="h-screen p-5 border shadow-sm">
+        <div className="bg-neutral-800 h-screen p-5 border shadow-sm">
             <div className="flex flex-row items-center">
                 <Image src={"./chart-donut.svg"} alt="logo" width={50} height={30} />
-                <span className="text-blue-800 font-bold text-4xl">Aura</span>
+                <span className="text-primary font-bold text-4xl">Aura</span>
             </div>
 
             <div className="mt-5">
