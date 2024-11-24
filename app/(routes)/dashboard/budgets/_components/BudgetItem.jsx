@@ -38,7 +38,7 @@ function BudgetItem({ budget }) {
             </h2>
             <div>
               <h2 className="font-bold">{budget.name}</h2>
-              <h2 className="text-sm text-gray-500">{budget.totalItem} Item</h2>
+              <h2 className="text-sm text-gray-500">{budget.totalItem} Item(s)</h2>
             </div>
           </div>
           <h2 className="font-bold text-primary text-lg"> ${budget.amount}</h2>
@@ -49,8 +49,8 @@ function BudgetItem({ budget }) {
             <h2 className="text-xs text-slate-400">
               ${budget.totalSpend ? budget.totalSpend : 0} Spend
             </h2>
-            <h2 className="text-xs text-slate-400">
-              ${budget.amount - budget.totalSpend} Remaining
+            <h2 className={budget.amount - budget.totalSpend < 0 ? "text-xs text-red-600" : "text-xs text-slate-400"}>
+              {budget.amount - budget.totalSpend < 0 ? `$${Math.abs(budget.amount - budget.totalSpend)} Over`: `${budget.amount - budget.totalSpend} Remaining`} 
             </h2>
           </div>
           <div

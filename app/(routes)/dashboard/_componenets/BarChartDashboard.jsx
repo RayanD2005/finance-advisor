@@ -8,7 +8,7 @@ function BarChartDashboard({budgetList}){
         amount: budget.amount,
         totalSpend: budget.totalSpend,
         remainingBudget: Math.abs(budget.amount - budget.totalSpend),
-        amountOver: budget.amount - budget.totalSpend < 0 ? Math.abs(budget.amount - budget.totalSpend) : 0
+        dynamicKey: budget.amount - budget.totalSpend < 0 ? budget.amount : budget.totalSpend,
       }));
 
     return (
@@ -30,7 +30,7 @@ function BarChartDashboard({budgetList}){
                     const style = name === "Total Spend" && remainingBudget < 0 ? { color: "red" } : {};
                     return [
                         <span style={style}>
-                        {value}
+                        {props.payload.totalSpend}
                         </span>,
                         name,
                     ];
@@ -39,22 +39,7 @@ function BarChartDashboard({budgetList}){
                     }} 
                     />
                     <Legend/>
-                    <Bar dataKey='totalSpend' stackId='a' fill="#4845d2" name='Total Spend'
-                    shape={({ x, y, width, height, payload }) => {
-                        const fillColor = payload.remainingBudget < 0 ? 'red' : '#4845d2';
-                        return (
-                          <rect 
-                            x={x} 
-                            y={y} 
-                            width={width} 
-                            height={height} 
-                            fill={fillColor} 
-                            stroke="#000" 
-                            
-                          />
-                        );
-                      }}
-                    />
+                    <Bar dataKey="dynamicKey" stackId='a' fill="#4845d2" name='Total Spend' stroke="#000"/>
                     <Bar dataKey='remainingBudget' stackId='a' fill="#c3c2ff" name='Amount'  
                     shape={({ x, y, width, height, payload }) => {
                         const fillColor = payload.amount - payload.totalSpend < 0 ? 'red' : '#c3c2ff';
