@@ -5,7 +5,10 @@ import {Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis} from 
 function BarChartDashboard({budgetList}){
     const updatedBudgetList = budgetList.map(budget => ({
         ...budget,
-        remainingBudget: budget.amount - budget.totalSpend,
+        amount: budget.amount,
+        totalSpend: budget.totalSpend,
+        remainingBudget: Math.abs(budget.amount - budget.totalSpend),
+        amountOver: budget.amount - budget.totalSpend < 0 ? Math.abs(budget.amount - budget.totalSpend) : 0
       }));
 
     return (
@@ -23,12 +26,52 @@ function BarChartDashboard({budgetList}){
                     if (name === 'Amount') {
                         return [props.payload.amount, 'Amount']; // Display the 'amount' value instead of 'remainingBudget'
                     }
-                    return [value, name];
+                    const remainingBudget = props.payload.amount - props.payload.totalSpend
+                    const style = name === "Total Spend" && remainingBudget < 0 ? { color: "red" } : {};
+                    return [
+                        <span style={style}>
+                        {value}
+                        </span>,
+                        name,
+                    ];
+
+                    //return [value, name];
                     }} 
                     />
                     <Legend/>
-                    <Bar dataKey='totalSpend' stackId='a' fill="#4845d2" name='Total Spend'/>
-                    <Bar dataKey='remainingBudget' stackId='a' fill="#c3c2ff" name='Amount'/>
+                    <Bar dataKey='totalSpend' stackId='a' fill="#4845d2" name='Total Spend'
+                    shape={({ x, y, width, height, payload }) => {
+                        const fillColor = payload.remainingBudget < 0 ? 'red' : '#4845d2';
+                        return (
+                          <rect 
+                            x={x} 
+                            y={y} 
+                            width={width} 
+                            height={height} 
+                            fill={fillColor} 
+                            stroke="#000" 
+                            
+                          />
+                        );
+                      }}
+                    />
+                    <Bar dataKey='remainingBudget' stackId='a' fill="#c3c2ff" name='Amount'  
+                    shape={({ x, y, width, height, payload }) => {
+                        const fillColor = payload.amount - payload.totalSpend < 0 ? 'red' : '#c3c2ff';
+                        return (
+                          <rect 
+                            x={x} 
+                            y={y} 
+                            width={width} 
+                            height={height} 
+                            fill={fillColor} 
+                            stroke="#000" // Optional: Add border for better clarity
+                            
+                            
+                          />
+                        );
+                      }}
+                    />
                 </BarChart>
             </ResponsiveContainer>
         </div>
