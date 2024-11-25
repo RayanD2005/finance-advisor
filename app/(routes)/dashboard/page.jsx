@@ -92,8 +92,8 @@ function Dashboard(){
 
     return (
         
-        <div className="p-8">
-            <h2 className="font-bold text-4xl">Hi, {user?.fullName}</h2>
+        <div className="bg-back p-8">
+            <h2 className="text-textColor font-bold text-4xl">Hi, {user?.fullName}</h2>
             <p className="text-gray-500 ">Lets save you some money</p>
 
             <CardInfo budgetList={budgetList} incomeList={incomeList} />
@@ -106,7 +106,7 @@ function Dashboard(){
                 </div>
 
                 <div className="grid gap-5">
-                    <h2 className="font-bold text-lg">Latest Budgets</h2>
+                    <h2 className="text-textColor font-bold text-lg">Latest Budgets</h2>
                     {budgetList?.length > 0 ? budgetList.map((budget, index) =>(
                         <BudgetItem budget={budget} key={index} />
                     )) : [1,2,3,4].map((item, index) => (

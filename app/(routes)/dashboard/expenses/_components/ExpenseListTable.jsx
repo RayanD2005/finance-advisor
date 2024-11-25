@@ -1,9 +1,10 @@
 import { db } from "@/utils/dbConfig";
-import { Expenses } from "@/utils/schema";
-import { eq } from "drizzle-orm";
+import { Expenses, Budgets } from "@/utils/schema";
+import { desc, eq, getTableColumns, sql } from "drizzle-orm";
 import { Trash } from "lucide-react";
 import React from "react";
 import { toast } from "sonner";
+
 
 function ExpenseListTable({ expensesList, refreshData }) {
   const deleteExpense = async (expense) => {
@@ -17,11 +18,25 @@ function ExpenseListTable({ expensesList, refreshData }) {
       refreshData();
     }
   };
-  console.log("Expense List: ", expensesList);
+
+  const getBudgetForExpense = async (expense) => {
+    const result = await db
+      .select({
+        ...getTableColumns(Budgets),
+        totalSpend: sql`SUM(${Expenses.amount}::NUMERIC)`.mapWith(Number),
+      })
+      .from(Budgets)
+      .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
+      .where(eq(Budgets.id, expense.budgetId))
+      .groupBy(Budgets.id);
+  
+    return result[0] || null; // Return the first matching budget or null if not found
+  };
+  
   return (
     <div className="mt-3">
       <h2 className="font-bold text-lg">Latest Expenses</h2>
-      <div className="grid grid-cols-4 rounded-tl-xl rounded-tr-xl bg-slate-200 p-2 mt-3">
+      <div className="grid grid-cols-5 rounded-tl-xl rounded-tr-xl bg-slate-200 p-2 mt-3">
         <h2 className="font-bold">Name</h2>
         <h2 className="font-bold">Amount</h2>
         <h2 className="font-bold">Date</h2>

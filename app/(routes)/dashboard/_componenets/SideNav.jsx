@@ -5,7 +5,12 @@ import {LayoutGrid,
     ReceiptText,
     ShieldCheck,
     CircleDollarSign,
-    PiggyBankIcon
+    BookOpen,
+    Landmark,
+    Gem,
+    Wallet
+    
+
 } from 'lucide-react';
 
 import { UserButton } from "@clerk/nextjs";
@@ -13,12 +18,13 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { index } from "drizzle-orm/mysql-core";
 
+
 function SideNav(){
     const menuList = [
         {
             id: 1,
             name: "Dashboard",
-            icon: LayoutGrid,
+            icon: BookOpen,
             path: "/dashboard"
         },
         {
@@ -30,7 +36,7 @@ function SideNav(){
         {
             id: 3,
             name: "Budgets",
-            icon: PiggyBank,
+            icon: Wallet,
             path: "/dashboard/budgets"
         },
         {
@@ -42,7 +48,7 @@ function SideNav(){
         {
             id: 5,
             name: "Upgrade",
-            icon: ShieldCheck,
+            icon: Gem,
             path: "/dashboard/upgrade"
         },
     ];
@@ -54,7 +60,7 @@ function SideNav(){
     }, [path]);
 
     return (
-        <div className="bg-neutral-800 h-screen p-5 border shadow-sm">
+        <div className="bg-neutral-800 h-screen p-5">
             <div className="flex flex-row items-center">
                 <Image src={"./chart-donut.svg"} alt="logo" width={50} height={30} />
                 <span className="text-primary font-bold text-4xl">Aura</span>

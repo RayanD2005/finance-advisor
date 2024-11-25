@@ -47,7 +47,7 @@ function BudgetItem({ budget }) {
         <div className="mt-5">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-xs text-slate-400">
-              ${budget.totalSpend ? budget.totalSpend : 0} Spend
+              ${budget.totalSpend ? budget.totalSpend : 0} Spent
             </h2>
             <h2 className={budget.amount - budget.totalSpend < 0 ? "text-xs text-red-600" : "text-xs text-slate-400"}>
               {budget.amount - budget.totalSpend < 0 ? `$${Math.abs(budget.amount - budget.totalSpend)} Over`: `${budget.amount - budget.totalSpend} Remaining`} 
@@ -58,8 +58,7 @@ function BudgetItem({ budget }) {
               bg-slate-300 h-2 rounded-full"
           >
             <div
-              className="
-              bg-primary h-2 rounded-full"
+              className={budget.amount - budget.totalSpend < 0 ? "bg-red-700 h-2 rounded-full": "bg-primary h-2 rounded-full"}
               style={{
                 width: `${calculateProgressPerc()}%`,
               }}
