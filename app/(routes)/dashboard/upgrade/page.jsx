@@ -41,7 +41,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> 20 users included </span>
+                <span className="text-gray-700"> 20 huzz included </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -79,7 +79,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> Email support </span>
+                <span className="text-gray-700"> Diddy party invite </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -98,7 +98,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> Help center access </span>
+                <span className="text-gray-700"> Goon center access </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -117,7 +117,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> Phone support </span>
+                <span className="text-gray-700"> Darius </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -136,7 +136,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> Community access </span>
+                <span className="text-gray-700"> Dodon ray </span>
               </li>
             </ul>
 
@@ -184,7 +184,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> 10 users included </span>
+                <span className="text-gray-700"> 10 huzz included </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -222,7 +222,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> Email support </span>
+                <span className="text-gray-700"> Diddy party invite </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -241,7 +241,7 @@ function Upgrade() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> Help center access </span>
+                <span className="text-gray-700"> Goon center access </span>
               </li>
             </ul>
 

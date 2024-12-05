@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
 
 const currency = "USD";
+const period = "monthly"
 
 const openai = new OpenAI({
     
@@ -10,16 +11,23 @@ const openai = new OpenAI({
 });
 
 async function getFinancialAdvice (totalBudget, totalIncome, totalSpend){
+    console.log('total Budget: ', totalBudget)
+    console.log('total Income: ', totalIncome)
+    console.log('total Spend: ', totalSpend)
+
     try {
-        const userPrompt = `You are a financial advisor helping users optimize their budget. Here is the user's financial data: 
+        const userPrompt = `Here is my ${period} financial data: 
         - Total Budget: ${totalBudget} ${currency}
         - Total Income: ${totalIncome} ${currency}
         - Total Expenses: ${totalSpend} ${currency}
-        Provide clear and actionable financial advice to help the user manage their budget effectively. Limit your response to 4 sentences.`;
+        Provide clear and actionable financial advice to help me manage my budget and finances effectively. Limit your response to 5 sentences.`;
+
+        const systemPrompt = `You are a financial advisor. You will be provided with a user's total Budget, total Income and total Expenses. 
+        Using those you must give them professional financial advice. All the financial data is ${period}`
 
         const chatCompletion = await openai.chat.completions.create({
             model: 'gpt-4', 
-            messages: [{ role: "system", content: "You are a financial advisor." },
+            messages: [{ role: "system", content: systemPrompt },
                 {
                 role: 'user',
                 content: userPrompt

@@ -23,6 +23,7 @@ import {
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import EditBudget from "../_components/EditBudget";
+import FinancialAdviceCard from "@/app/(routes)/dashboard/_componenets/FinancialAdviceCard";
 
 function ExpensesScreen({ params }) {
   const { user } = useUser();
@@ -33,6 +34,8 @@ function ExpensesScreen({ params }) {
   useEffect(() => {
     user && getBudgetInfo();
   }, [user]);
+
+  console.log("Budget ID: ",id);
 
   /**
    * Get Budget Information
@@ -143,6 +146,7 @@ function ExpensesScreen({ params }) {
           refreshData={() => getBudgetInfo()}
         />
       </div>
+      <FinancialAdviceCard budgetId={id}/>
       <div className="mt-4">
         <ExpenseListTable
           expensesList={expensesList}

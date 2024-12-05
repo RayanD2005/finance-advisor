@@ -14,16 +14,28 @@ import {LayoutGrid,
 } from 'lucide-react';
 import formatNumber from "@/utils";
 import getFinancialAdvice from "@/utils/getFinancialAdvice";
+import getInDepthFinancialAdvice from "@/utils/getInDepthFinancialAdvice";
 
 import React, { useEffect, useState } from 'react';
+import { useUser } from '@clerk/nextjs';
 
 function CardInfo({budgetList, incomeList}){
+
+    //Testing Purposes:
+
+
+    //const inDepthAdvice = getInDepthFinancialAdvice(100, 100, 100);
+
+
     const [totalBudget, setTotalBudget] = useState(0);
     const [totalSpend, setTotalSpend] = useState(0);
     const [totalIncome, setTotalIncome] = useState(0);
     const [financialAdvice, setFinancialAdvice] = useState("");
+    const [inDepthFinancialAdvice, setInDepthFinancialAdvice] = useState("");
 
     const [isClient, setIsClient] = useState(false); 
+
+    const {user}=useUser();
 
     useEffect(() => {
       setIsClient(true);
@@ -34,8 +46,8 @@ function CardInfo({budgetList, incomeList}){
             CalculateCardInfo();
         }
     }, [budgetList, incomeList]);
-
     useEffect(() => {
+      setFinancialAdvice("Loading financial advice...");
       if (isClient && (totalBudget > 0 || totalIncome > 0 || totalSpend > 0)) {
         const fetchFinancialAdvice = async () => {
           const cachedAdviceKey = `${totalBudget}-${totalIncome}-${totalSpend}`;
@@ -44,6 +56,7 @@ function CardInfo({budgetList, incomeList}){
             const cachedAdvice = localStorage.getItem(cachedAdviceKey);
   
             if (cachedAdvice) {
+
               setFinancialAdvice(cachedAdvice);
               return;
             }
@@ -54,8 +67,16 @@ function CardInfo({budgetList, incomeList}){
             totalIncome,
             totalSpend
           );
-  
+
+          // const inDepthAdvice = await getInDepthFinancialAdvice(
+          //   totalBudget,
+          //   totalIncome,
+          //   totalSpend,
+          //   user?.primaryEmailAddress?.emailAddress
+          // );
+          setFinancialAdvice("Loading financial advice...");
           setFinancialAdvice(advice);
+          // setInDepthFinancialAdvice(inDepthAdvice);
   
           if (typeof window !== "undefined") {
             localStorage.setItem(cachedAdviceKey, advice);
@@ -105,6 +126,7 @@ function CardInfo({budgetList, incomeList}){
                   <h2 className="text-textColor font-semibold text-md">
                     {financialAdvice || "Loading financial advice..."}
                   </h2>
+                  <br/>
                 </div>
               </div>
     
